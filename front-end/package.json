@@ -4,12 +4,13 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./sass/style.scss:./style.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prefix": "postcss ./style.css --use autoprefixer -d ./prefixed"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bootstrap": "^5.0.0"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

@@ -1,0 +1,30 @@
+/*general settings*/
+html, body{
+    height: 100%;
+    margin: 0;
+    padding:0;
+}
+button a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+main, footer, h1{
+    padding: 1rem;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
+header img, footer img{
+    border-radius: 10%;
+}
+
+.fa-cart-arrow-down{
+    font-size: 1.2rem;
+}
+
+
+/*general settings*/
