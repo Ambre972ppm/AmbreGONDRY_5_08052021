@@ -1,0 +1,12 @@
+//cart page
+form{
+    @include cards;
+    padding: 1rem;
+    & .full-name{
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+
+//cart page

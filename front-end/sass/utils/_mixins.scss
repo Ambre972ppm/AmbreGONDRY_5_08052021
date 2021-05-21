@@ -1,0 +1,59 @@
+//media queries
+@mixin tablette{
+    @media (min-width: 601px) and (max-width: 1023px){
+        @content
+    };
+}
+@mixin desktop{
+    @media (min-width: 1024px) {
+        @content
+    };
+}
+@mixin larger-screens {
+    @media (min-width: 601px){
+        @content
+    };
+}
+
+
+@mixin shadow{
+    box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.719);
+}
+@mixin shadow-hover{
+    box-shadow : 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+}
+
+@mixin btn{
+    @include shadow;
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+    background: $btn-color;
+    color: white;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 400ms;
+    &:hover{
+        opacity: 85%;
+        @include shadow-hover;
+        transform: scale(1.05);
+    }
+    &:active{
+        opacity: 100%;
+        transform: scale(1);
+    }
+}
+
+@mixin cards{
+    margin: 1rem;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+    &:hover{
+        @include shadow-hover;
+    }
+}

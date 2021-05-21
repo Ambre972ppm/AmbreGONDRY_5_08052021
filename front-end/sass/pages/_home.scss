@@ -1,0 +1,25 @@
+/*Home*/
+#main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 2rem;
+    @include tablette{
+        display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 33% 33% 33%;
+            gap: 1rem;
+            padding: 5rem;
+    }
+    @include desktop{
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+}
+/*home*/
