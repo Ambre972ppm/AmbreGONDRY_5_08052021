@@ -27,6 +27,19 @@ header img, footer img {
   font-size: 1.2rem;
 }
 
+.error {
+  border-radius: 1.2rem;
+  border: 0.7rem solid #e7890694;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+
 /*general settings*/
 /*buttons*/
 main button {
@@ -156,13 +169,15 @@ main button:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
   padding: 1rem;
 }
 .camera figure figcaption h1 {
   text-align: center;
 }
 .camera figure figcaption .description {
-  overflow: hidden;
+  font-size: x-large;
+  overflow: scroll;
   white-space: wrap;
   text-overflow: ellipsis;
 }
@@ -171,7 +186,8 @@ main button:active {
   font-size: large;
 }
 .camera figure figcaption button {
-  margin: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 form {
@@ -185,7 +201,25 @@ form:hover {
 }
 form .full-name {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
+}
+form .adress input {
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyCart {
+  border-radius: 1.2rem;
+  border: 0.7rem solid #e7890694;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=style.css.map */
