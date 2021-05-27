@@ -26,5 +26,13 @@ form{
     text-overflow: ellipsis;
 }
 
+#cart{
+    display: grid;
+    grid-auto-rows: auto;
+    gap: 2rem;
+    & button{
+       margin: auto;
+    }
+}
 
 //cart page

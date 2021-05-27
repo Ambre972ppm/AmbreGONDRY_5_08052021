@@ -222,4 +222,13 @@ form .adress input {
   text-overflow: ellipsis;
 }
 
+#cart {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 2rem;
+}
+#cart button {
+  margin: auto;
+}
+
 /*# sourceMappingURL=style.css.map */
