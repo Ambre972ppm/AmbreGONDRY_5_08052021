@@ -46,9 +46,10 @@ function displayOneCamera() {
                 }
 
                  localStorage.setItem("cartContent", JSON.stringify(camera));
-                 alert(`${value.name} à été ajouté au panier`); //on previent le client que le produit a été ajouté au panier
-             }
-    })
+                 alert(`${value.name} a été ajouté au panier`); //on previent le client que le produit a été ajouté au panier
+    
+                    }
+     })
 
 }
 displayOneCamera()
