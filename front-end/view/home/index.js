@@ -1,5 +1,14 @@
-//Url de l'API des produit selectionnés(ici les appareils photos)
-const url = "http://localhost:3000/api/cameras";
+const url = "http://localhost:3000/api/cameras";//Url de l'API des produit selectionnés(ici les appareils photos)
+
+//Recuperation des données de l'API
+async function getCameraInfo() {
+    let res = await fetch(url);
+    let data = await res.json();
+    data.map(camera => displayAllCameras(camera));
+}
+
+//Appel des données
+getCameraInfo();
 
 //Affichage des produits dans l'HTML lorsque les données sont récupérées
 function displayAllCameras(camera){
@@ -22,14 +31,3 @@ function displayAllCameras(camera){
     console.log(camera);
     console.log(`Id : ${camera._id} - Nom : ${camera.name}`);
 }
-
-//Recuperation des données de l'API
-async function getCameraInfo() {
-    let res = await fetch(url);
-    let data = await res.json();
-    data.map((camera) => displayAllCameras(camera));
-}
-
-//Appel des données
-getCameraInfo();
-

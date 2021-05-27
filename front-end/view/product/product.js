@@ -1,7 +1,7 @@
-//récuperation de l'id du produit sélectionné
+//récuperation de l'id du produit sélectionné dans l'URL
 const urlParams = new URLSearchParams(window.location.search);
 const cameraId = urlParams.get('id');
-console.log(cameraId)
+console.log(cameraId)//Affichage de l'Id dans la console
 
 
 //affichage de l'appareil selectionné
@@ -24,39 +24,31 @@ function displayOneCamera() {
                         <h1>  ${value.name} </h1>
                         <p class="description"> ${value.description} </p>
                         <select class="lenses"> 
-                                <option>Choisissez votre Lentille.. ${value.lenses.map((lenses) => `<option>${lenses}</option>`)} </option>
+                                <option>Choisissez votre Lentille.. ${value.lenses.map(lenses => `<option>${lenses}</option>`)} </option>
                         </select>
                         <p class="price">Prix unitaire :<b> ${value.price/100} €</b></p>
                         <button>
-                            <a id="addToCart" href ="../cart/cart.html">
+                            <a id="addCart" href ="../cart/cart.html">
                                 Ajouter au Panier
                             </a>
                         </button>
                     </figcaption>
                 </figure>
              </aside>`;
-        })
-        .catch(function(err) {
-            document
-                .getElementById('product')
-                .innerHTML += 
-                `<aside class="error">
-                    <h2>
-                        Une erreur s'est produite, Veuillez nous en excuser et recharger la page ultérieurement
-                    </h2>
-                 </aside>`;
-        
-        
-        const addToCart = document.getElementById("addToCart");
 
-        addToCart.addEventListener("click", function() {
-            const cartContent = JSON.parse(localStorage.getItem("cartContent")) || [];     
-                cartContent.push(cameraId);
-                localStorage.setItem("cartContent", JSON.stringify(cartContent)); 
-  
-  });
-})
+             addCart.onclick = () =>{
+                const camera = {
+                    picture : value.imageUrl,
+                    name : value.name,
+                    lenseSelected : value.lenses,
+                    quantity : value._id.lenght,
+                    price : value.price/100
+                }
+
+                 localStorage.setItem("cartContent", JSON.stringify(camera));
+                 alert(`${value.name} a été ajouté au panier`); //on previent le client que le produit a été ajouté au panier
+             }
+    })
 
 }
-
 displayOneCamera()
