@@ -138,6 +138,9 @@ main button:active {
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
 }
+.camera p {
+  margin: 1rem;
+}
 .camera:hover {
   box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
 }
@@ -188,6 +191,10 @@ main button:active {
 .camera figure figcaption button {
   margin-right: auto;
   margin-left: auto;
+}
+
+#quantity {
+  width: 3rem;
 }
 
 form {
