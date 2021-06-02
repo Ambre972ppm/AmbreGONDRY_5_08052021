@@ -1,5 +1,8 @@
 //product page
 .camera{
+    p{
+        margin: 1rem
+    }
     @include cards;
     & figure{
         display: grid;
@@ -46,5 +49,10 @@
         }
         }
     }
+}
+
+
+#quantity {
+    width: 3rem;
 }
 //product page

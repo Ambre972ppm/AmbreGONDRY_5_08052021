@@ -1,5 +1,4 @@
-const url = "http://localhost:3000/api/cameras/"; // URL de l'API
-const urlPost = "http://localhost:3000/api/cameras/order"; // URL API request POST
+const urlPost = "http://localhost:3000/api/cameras/order"; // Url pour la requête post
 
 const cartContainer = document.getElementById("cart");//on defini le conteneur
 
@@ -9,9 +8,11 @@ cartArray.classList.add("cart-array");
 
 cartContainer.appendChild(cartArray);
 
-const fetchCartContent = JSON.parse(localStorage.getItem("cartContent"))
+
+let fetchCartContent = JSON.parse(localStorage.getItem("cart"))
+
 if(fetchCartContent!= null)//si le localStorage contient des produits dans cartContent
-    cartArray.innerHTML = `${JSON.parse(localStorage.getItem("cartContent"))}`;//il nous les renvois dans le tableau
+    cartArray.innerHTML = `${JSON.parse(localStorage.getItem("cart"))}`;//il nous les renvois dans le tableau
 
 //Création du bouton vider le panier
   const clearCart = document.createElement("button");
