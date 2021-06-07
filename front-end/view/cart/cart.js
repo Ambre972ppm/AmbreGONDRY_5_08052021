@@ -1,36 +1,86 @@
-const urlPost = "http://localhost:3000/api/cameras/order"; // Url pour la requête post
+const urlPost = "http://localhost:3000/api/cameras/order";
 
+let cartContent = JSON.parse(localStorage.getItem("cart")) || [];//on retrouve et récupère le contenu du localStorage
+
+//emplacement du contenu de la page
 const cartContainer = document.getElementById("cart");//on defini le conteneur
 
-//Tableau du panier
-const cartArray = document.createElement("aside");
-cartArray.classList.add("cart-array");
+//emplacement ou intégrer le contenu du panier
+let tableContainer = document.getElementById("tableContainer");
 
-cartContainer.appendChild(cartArray);
+// initialise le prix du panier
+let cartPrice = 0;
+//formateur du prix pour passer le nombre concernant le prix en devise
+const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+
+//récupération ID
+let cameraId = [];
 
 
-let fetchCartContent = JSON.parse(localStorage.getItem("cart"))
-
-if(fetchCartContent!= null)//si le localStorage contient des produits dans cartContent
-    cartArray.innerHTML = `${JSON.parse(localStorage.getItem("cart"))}`;//il nous les renvois dans le tableau
-
-//Création du bouton vider le panier
-  const clearCart = document.createElement("button");
-  clearCart.classList.add("clear-cart");
-  
-  cartArray.appendChild(clearCart);
-
-  clearCart.textContent = "Vider le panier";
-
-  clearCart.onclick = () =>{//au clic
-    localStorage.clear();//on nettoie le local storage
-    document.location.reload()//et on recharge la page pour vider le panier
+//calcul du prix total du panier
+function cartTotalPrice(camera){
+  cartPrice += camera.quantity * camera.price/100;
+  //affiche le prix total et l'envoi au local Storage
+  let totalPrice = document.getElementById('totalPrice').textContent = formatter.format(cartPrice);
+  localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 };
 
-//Formulaire de contact
+//Boucle pour generer l'affichage de chacun des articles stockés dans le local storage
+cartContent.forEach((camera, i) => {
+  tableContainer.innerHTML += `
+    <tr>
+        <td class="picture"><img src=${camera.imageUrl} alt="appareil photo" /></td>
+        <td>${camera.name}</td>
+        <td>${camera.lense}</td>
+        <td>${formatter.format(camera.price/100)}</td>
+        <td>${camera.quantity}</td>
+        <td>${formatter.format(camera.quantity * camera.price/100)}</td>
+        <td class="deleteCamera"><a class="deleteCamera" data-id="${i}"> <i class="fas fa-trash-alt"></i></a></td>
+    </tr>
+  
+  `;
+
+  cartTotalPrice(camera)
+
+
+  for (let i = 0; i < camera.quantity; i++) {
+    cameraId.push(camera.id);
+  }
+});
+
+
+function deleteCamera(id) {
+    let camera = cartContent[id];
+    if (camera.quantity > 1) {
+      camera.quantity--;
+    } else {
+      cartContent.splice(id, 1);
+    }
+    localStorage.setItem('cart', JSON.stringify(cartContent));
+    window.location.reload();
+  }
+
+//supprimer le produit du panier
+document.querySelectorAll(".deleteCamera").forEach(deleteButton => {
+  deleteButton.addEventListener('click', () => deleteCamera(deleteButton.dataset.id))
+});
+
+let clearCart = document.getElementById('clearCart')
+clearCart.addEventListener('click',  deleteCart);
+
+//fonction vider le panier
+function deleteCart() {
+  if (cartContent == null) {
+  } else {
+    tableContainer.remove();
+    localStorage.clear();
+    window.location.reload();
+  }
+};
+
+////formulaire de contact ////
 const cartForm =  document.createElement("aside");
                   cartForm.classList.add("cart-form");
-      
 cartContainer.appendChild(cartForm)
              .innerHTML += `<form class="row g-3">
                           <div class="row g-3">
@@ -85,13 +135,14 @@ cartContainer.appendChild(cartForm)
                             <input type="tel" class="form-control" id="inputTel4" placeholder="0790123456" pattern="[0-9]{10}">
                           </div>
                           <div class="col-12">
+                            
                             <button type="submit" class="btn btn-primary order-validation">
+                            <a  id="sendForm" href ="../orderconfirmation/orderconfirm.html">
                               Commander
-                            </a></button>
+                            </a>
+                            </button>
                           </div>
                           
                         </form>`;
 
-//if (localStorage.getItem("orderData") !== "undefined") {
-//    window.location.href = "../orderconfirmation/orderconfirm.html";
-//}
+

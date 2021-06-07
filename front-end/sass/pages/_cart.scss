@@ -27,12 +27,38 @@ form{
 }
 
 #cart{
-    display: grid;
-    grid-auto-rows: auto;
-    gap: 2rem;
+    @include cards;
+    padding: 1rem;
     & button{
-       margin: auto;
-    }
+        margin: auto;
+        margin-top: 1rem;
+     }
 }
+
+table{
+    @include mobile{
+        margin : 0;
+        .picture{
+            display: none;
+        }
+        .deleteCamera{
+            display: none;
+        }
+    }
+    margin: 1rem;
+    & td, th{
+        border: 0.2rem solid #e7890694;
+    }
+    & img{
+        width: 100%;
+    } 
+}
+
+thead, tfoot, .deleteCamera{
+    background-color: #e7890694;
+    font-weight: bold;
+}
+
+
 
 //cart page
