@@ -9,6 +9,7 @@ fetchCamerasInfo("http://localhost:3000/api/cameras")
 
 //---------------------------Affichage des produits lorsque les données sont récupérées-----------------
 function displayAllCameras(camera){
+    const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
     document.getElementById("main")
             .innerHTML +=
             `<aside id=${camera._id} class="item product-cards">
@@ -16,7 +17,7 @@ function displayAllCameras(camera){
                     <img src="${camera.imageUrl}" alt="${camera.name}">
                 <figcaption class="product-cards__details">
                     <h2>  ${camera.name} </h2>
-                    <p class="price">Prix : <b>${camera.price/100} €</b></p>
+                    <p class="price">Prix : <b>${formatter.format(camera.price/100)}</b></p>
                     <button>
                         <a class="details" href="../product/product.html?id=${camera._id}">
                             En savoir plus sur cet appareil
