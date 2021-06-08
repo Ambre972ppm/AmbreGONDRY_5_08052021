@@ -36,6 +36,7 @@ form{
 }
 
 table{
+    height: 20%;
     @include mobile{
         margin : 0;
         .picture{

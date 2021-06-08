@@ -1,20 +1,22 @@
+//---------------------------------------------------URL requête POST---------------------------------------------------
 const urlPost = "http://localhost:3000/api/cameras/order";
 
-let cartContent = JSON.parse(localStorage.getItem("cart")) || [];//on retrouve et récupère le contenu du localStorage
+//----------------------------------on retrouve et récupère le contenu du localStorage----------------------------------
+let cartContent = JSON.parse(localStorage.getItem("cart")) || [];
 
 //emplacement du contenu de la page
-const cartContainer = document.getElementById("cart");//on defini le conteneur
-
+const cartContainer = document.getElementById("cart");
 //emplacement ou intégrer le contenu du panier
 let tableContainer = document.getElementById("tableContainer");
 
-// initialise le prix du panier
-let cartPrice = 0;
-//formateur du prix pour passer le nombre concernant le prix en devise
-const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+let cameraId = [];//récupération ID
 
-//récupération ID
-let cameraId = [];
+//----------------------------------------------------Prix du panier-----------------------------------------------------
+let cartPrice = 0;//initialisation du prix du panier
+
+const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });//formateur nombre pour passer prix en devise
+
+
 
 
 //calcul du prix total du panier
@@ -29,7 +31,7 @@ function cartTotalPrice(camera){
 cartContent.forEach((camera, i) => {
   tableContainer.innerHTML += `
     <tr>
-        <td class="picture"><img src=${camera.imageUrl} alt="appareil photo" /></td>
+        <td class="picture"><a href="../product/product.html?id=${camera._id}"><img src=${camera.imageUrl} alt="appareil photo" /></a></td>
         <td>${camera.name}</td>
         <td>${camera.lense}</td>
         <td>${formatter.format(camera.price/100)}</td>
