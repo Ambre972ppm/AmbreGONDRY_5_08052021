@@ -1,14 +1,22 @@
-//----------------------------------Recuperation des données de l'API----------------------------------
+//__________________________________Recuperation des données de l'API__________________________________
+
 async function fetchCamerasInfo(url){
+    //la réponse attend le retour du fetch de l'URL de l'API camera
     const res = await fetch(url);
+    //les données attendent la réponse au format JSON
     const data = await res.json();
+    //on retrouve dans les données les différents objets camera
     data.map(camera => displayAllCameras(camera));
 }
-//--------------------------------------appel des données de l'API--------------------------------------
+
+//______________________________________Appel des données de l'API______________________________________
+
 fetchCamerasInfo("http://localhost:3000/api/cameras")
 
-//---------------------------Affichage des produits lorsque les données sont récupérées-----------------
+//______________________Affichage des produits lorsque les données sont récupérées______________________
+
 function displayAllCameras(camera){
+    //on formate le nombre sélectionné afin de le transformer en devise, ici Euros
     const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
     document.getElementById("main")
             .innerHTML +=
@@ -18,11 +26,13 @@ function displayAllCameras(camera){
                 <figcaption class="product-cards__details">
                     <h2>  ${camera.name} </h2>
                     <p class="price">Prix : <b>${formatter.format(camera.price/100)}</b></p>
-                    <button>
+                    
                         <a class="details" href="../product/product.html?id=${camera._id}">
+                        <button>
                             En savoir plus sur cet appareil
+                        </button>
                         </a>
-                    </button>
+                    
                 </figcaption>
                 </figure>
             </aside>`;

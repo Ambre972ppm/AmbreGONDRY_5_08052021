@@ -5,14 +5,18 @@ html, body {
   padding: 0;
 }
 
-button a {
+a {
   text-decoration: none;
-  font-weight: bold;
+  font-weight: bolder;
   color: white;
 }
 
 main, footer, h1 {
   padding: 1rem;
+}
+
+h1 {
+  font-family: "Belligerent Madness", sans-serif;
 }
 
 h2 {
@@ -23,7 +27,7 @@ header img, footer img {
   border-radius: 10%;
 }
 
-.fa-cart-arrow-down {
+.fas {
   font-size: 1.2rem;
 }
 
@@ -103,6 +107,13 @@ main button:active {
 
 /*product cards*/
 /*animation loader home page*/
+nav {
+  font-family: "Belligerent Madness", sans-serif;
+}
+nav .nav-title {
+  font-size: 200%;
+}
+
 /*Home*/
 #main {
   display: flex;
@@ -197,21 +208,76 @@ main button:active {
   width: 3rem;
 }
 
-form {
+#main-cart {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 5% 30% 65%;
+}
+#main-cart h1 {
+  margin: 1rem;
+}
+
+#title {
+  grid-row: 1;
+}
+
+#cart {
+  grid-row: 2;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+#cart button {
+  margin: auto;
+  margin-top: 1rem;
+}
+
+table {
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  table .picture {
+    display: none;
+  }
+}
+table td, table th {
+  border: 0.2rem solid #e7890694;
+  width: 1rem;
+}
+table img {
+  width: 100%;
+  cursor: pointer;
+}
+
+thead, tfoot, .deleteCamera {
+  background-color: #e7890694;
+  font-weight: bold;
+}
+
+.deleteCamera {
+  width: 1%;
+  cursor: pointer;
+}
+
+.cart-form {
+  grid-row: 3;
   margin: 1rem;
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+  margin: 1rem;
   padding: 1rem;
 }
-form:hover {
+.cart-form:hover {
   box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
 }
-form .full-name {
+.cart-form .full-name {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-form .adress input {
+.cart-form .adress input {
   display: flex;
   flex-direction: column;
 }
@@ -223,50 +289,11 @@ form .adress input {
   justify-content: center;
   align-content: center;
   padding: 1rem;
+  margin: 1rem;
   text-align: center;
   overflow: hidden;
   white-space: wrap;
   text-overflow: ellipsis;
-}
-
-#cart {
-  margin: 1rem;
-  border-radius: 5%;
-  box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
-  padding: 1rem;
-}
-#cart:hover {
-  box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
-}
-#cart button {
-  margin: auto;
-  margin-top: 1rem;
-}
-
-table {
-  margin: 1rem;
-}
-@media (max-width: 600px) {
-  table {
-    margin: 0;
-  }
-  table .picture {
-    display: none;
-  }
-  table .deleteCamera {
-    display: none;
-  }
-}
-table td, table th {
-  border: 0.2rem solid #e7890694;
-}
-table img {
-  width: 100%;
-}
-
-thead, tfoot, .deleteCamera {
-  background-color: #e7890694;
-  font-weight: bold;
 }
 
 /*# sourceMappingURL=style.css.map */

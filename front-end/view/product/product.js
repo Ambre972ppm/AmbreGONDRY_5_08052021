@@ -1,23 +1,9 @@
-//---------------------------------récuperation de l'id du produit sélectionné dans l'URL----------------------------------
-    const urlParams = new URLSearchParams(window.location.search);
-    const cameraId = urlParams.get('id');
-    console.log(cameraId)
-//------------------------------on appelle les données correspondant à l'appareil selectionné------------------------------
-    fetch(`http://localhost:3000/api/cameras/${cameraId}`)
-//-----------------------------Une fois la reponse du fetch reçue on la retourne au format json-----------------------------
-        .then(function(res) {
-            if (res.ok) {
-            return res.json();
-            }
-        })
-//--------------nous recupérons la valeur de la requête précedente et l'affichons dans le container "product"---------------
-        .then(function(value) {
-            console.log(value);
-            const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-            document
-                .getElementById('product')
-                .innerHTML += 
-            `<aside id=${value._id} class="camera">
+//______________________________On génère notre code HTML contenant l'appareil selectionné______________________________
+
+function printProductContainer(value, formatter){
+    document
+            .getElementById('product')
+            .innerHTML +=`<aside id=${value._id} class="camera">
                     <figure>
                         <img src="${value.imageUrl}" alt="${value.name}">
                     <figcaption>
@@ -35,55 +21,83 @@
                         </select>
                         <p class="price">Prix unitaire :<b> ${formatter.format(value.price/100)}</b></p>
 
-                        <button>
+                        
                             <a id="addCart" href ="../cart/cart.html">
+                            <button>
                                 Ajouter au Panier
+                            </button>
                             </a>
-                        </button>
+                        
                     </figcaption>
                 </figure>
              </aside>`;
+}
+//____________________________________création de la boucle des options de lentilles____________________________________
 
-//----------------------------------création de la boucle des options de lentilles-----------------------------------
-             let selectALense = [];
-             const lensesSelect = document.getElementById("lensesSelect");
-            
-             for(lense of value.lenses){
-                selectALense +=
-                `<option value ="${lense}">${lense}</option>`
-             }
-             lensesSelect.innerHTML = selectALense;
-//--------------------------------------------choix de la quantité----------------------------------------------------
-             let cameraQuantity = document.getElementById("quantity")
+function createLenseOption(value){
+    let selectALense = [];
+    const lensesSelect = document.getElementById("lensesSelect");
+   
+    for(lense of value.lenses){
+       selectALense +=
+       `<option value ="${lense}">${lense}</option>`
+    }
+    lensesSelect.innerHTML = selectALense;
+}
+//_________________________________________________choix de la quantité_________________________________________________
+
+function chooseProductQuantity(){
+    let cameraQuantity = document.getElementById("quantity")
              .addEventListener("change", function(e){
                 cameraQuantity = e.target.value
                 quantityChoose = parseInt(cameraQuantity)
              })
-//---------------------------------------------------Ajout au panier---------------------------------------------------
-             const addToCart = document.getElementById("addCart");//on recupère le bouton ajouter au panier 
-        
-             addToCart.addEventListener("click", function(e){
-                  e.preventDefault();
-                  
-                  //on met le choix de lentille de l'utilisateur dans une variable
-                  const lenseSelected = lensesSelect.value;
-                  //si la quantité n'a pas été defini par defaut elle est égal à 1
-                  quantityChoose = quantity.value;
+}
+//____________________________________________________Ajout au panier____________________________________________________
 
+function sendToCart(value){
+    document.getElementById("addCart")//on recupère le bouton ajouter au panier 
+            .addEventListener("click", function(e){
+                e.preventDefault();
+                const lenseSelected = lensesSelect.value;//on définit l'objectif sélectionné
+                quantityChoose = quantity.value;//on défini la quantité choisie
+                //on ajoute ces valeurs selectionnées à value
                 value["quantity"] = quantityChoose;
                 value["lense"] = lenseSelected;
+    let cartContent = JSON.parse(localStorage.getItem("cart")) || [];//on retrouve le contenu du localStorage et on crée un tableau pour stocker les produits sélectionnés
+    cartContent.push(value);//ajout du produit dans le tableau cartContent
+    
+    //on envoie le produit et l'option selectionné dans le localStorage
+     localStorage.setItem("cart", JSON.stringify(cartContent));
+     alert(`Vous venez d'ajouter ${quantityChoose} ${value.name} objectif : ${lenseSelected} a votre panier`); //on previent le client que le produit a été ajouté au panier
+   console.log(value) 
+})
+}
+//___________________________________________On affiche l'appareil selectionné___________________________________________
 
-                let cartContent = JSON.parse(localStorage.getItem("cart")) || [];//on retrouve le contenu du localStorage
-                
-                cartContent.push(value);//ajout du produit dans le localStorage
-
-                //on envoie le produit et l'option selectionné dans le localStorage
-                  localStorage.setItem("cart", JSON.stringify(cartContent));
-                  alert(`l'Appareil ${value.name} objectif : ${lenseSelected} a été ajouté au panier`); //on previent le client que le produit a été ajouté au panier
-                console.log(value) 
+function displayOneCamera(){
+//------récuperation de l'id du produit sélectionné dans l'URL----------------------------------------
+    const urlParams = new URLSearchParams(window.location.search);
+    const cameraId = urlParams.get('id');
+    console.log(cameraId);    
+//------on appelle les données correspondant à l'appareil selectionné---------------------------------
+    fetch(`http://localhost:3000/api/cameras/${cameraId}`)
+//------Une fois la reponse du fetch reçue on la retourne au format json------------------------------
+        .then(function(res) {
+            if (res.ok) {
+            return res.json();
+            }
         })
+//------nous recupérons la valeur de la requête précedente et l'affichons dans le container "product"-
+        .then(function(value) {
+            const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+             printProductContainer(value, formatter);//1 - on affiche notre carte dans notre page
+             createLenseOption(value);               //2 - on crée la boucle pour permettre le choix de l'objectif
+             chooseProductQuantity(value);           //3 - on permet le choix de la quantité
+             sendToCart(value);                      //4 - on envoi le produit dans le localStorage pour le récuperer dans le panier
+             console.log(value);
     })
-//---------------------------------------------------En cas d'erreur ---------------------------------------------------
+//------En cas d'erreur -------------------------------------------------------------------------------
         .catch(function(err){
             document
                 .getElementById('product')
@@ -94,3 +108,7 @@
                                 </aside>`;
                                 return console.log(err);
         })
+}
+//_________________________Appel de la fonction pour afficher la carte de l'appareil selectionné_________________________
+
+displayOneCamera()
