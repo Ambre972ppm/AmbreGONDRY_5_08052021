@@ -1,6 +1,18 @@
 //cart page
-form{
+#main-cart{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 5% 30% 65%;
+    & h1{
+        margin: 1rem;
+    }
+}
+.cart-form{
+    grid-row: 3;
     @include cards;
+    margin: 1rem;
     padding: 1rem;
     & .full-name{
         display: flex;
@@ -27,7 +39,7 @@ form{
 }
 
 #cart{
-    @include cards;
+    grid-row: 2;
     padding: 1rem;
     & button{
         margin: auto;
@@ -36,22 +48,26 @@ form{
 }
 
 table{
-    height: 20%;
+    text-align: center;
+    margin-top: 2rem;
+    width: 100%;
     @include mobile{
         margin : 0;
         .picture{
             display: none;
         }
-        .deleteCamera{
-            display: none;
-        }
+        // .deleteCamera{
+        //     display: none;
+        // }
     }
-    margin: 1rem;
+    
     & td, th{
         border: 0.2rem solid #e7890694;
+        width: 1rem;
     }
     & img{
         width: 100%;
+        cursor: pointer;
     } 
 }
 
@@ -60,6 +76,10 @@ thead, tfoot, .deleteCamera{
     font-weight: bold;
 }
 
+.deleteCamera{
+    width: 1%;
+    cursor: pointer;
+}
 
 
 //cart page

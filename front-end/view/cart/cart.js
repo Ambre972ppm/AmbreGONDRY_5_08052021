@@ -1,34 +1,24 @@
-//---------------------------------------------------URL requête POST---------------------------------------------------
+//Url pour la requête POST
 const urlPost = "http://localhost:3000/api/cameras/order";
-
-//----------------------------------on retrouve et récupère le contenu du localStorage----------------------------------
-let cartContent = JSON.parse(localStorage.getItem("cart")) || [];
-
 //emplacement du contenu de la page
-const cartContainer = document.getElementById("cart");
+const cartContainer = document.getElementById("cart");//on defini le conteneur
 //emplacement ou intégrer le contenu du panier
 let tableContainer = document.getElementById("tableContainer");
+//formateur du prix pour passer le nombre concernant le prix en devise
+const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+// initialise le prix du panier
+let cartPrice = 0;
+//récupération ID
+let cameraId = [];
 
-let cameraId = [];//récupération ID
+//_________________________________on retrouve et récupère le contenu du localStorage_________________________________
 
-//----------------------------------------------------Prix du panier-----------------------------------------------------
-let cartPrice = 0;//initialisation du prix du panier
+let cartContent = JSON.parse(localStorage.getItem("cart")) || [];
 
-const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });//formateur nombre pour passer prix en devise
+//________________Boucle pour generer l'affichage de chacun des articles stockés dans le local storage________________
 
-
-
-
-//calcul du prix total du panier
-function cartTotalPrice(camera){
-  cartPrice += camera.quantity * camera.price/100;
-  //affiche le prix total et l'envoi au local Storage
-  let totalPrice = document.getElementById('totalPrice').textContent = formatter.format(cartPrice);
-  localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
-};
-
-//Boucle pour generer l'affichage de chacun des articles stockés dans le local storage
 cartContent.forEach((camera, i) => {
+  let subtotal = camera.quantity * camera.price/100;
   tableContainer.innerHTML += `
     <tr>
         <td class="picture"><a href="../product/product.html?id=${camera._id}"><img src=${camera.imageUrl} alt="appareil photo" /></a></td>
@@ -36,51 +26,55 @@ cartContent.forEach((camera, i) => {
         <td>${camera.lense}</td>
         <td>${formatter.format(camera.price/100)}</td>
         <td>${camera.quantity}</td>
-        <td>${formatter.format(camera.quantity * camera.price/100)}</td>
+        <td>${formatter.format(subtotal)}</td>
         <td class="deleteCamera"><a class="deleteCamera" data-id="${i}"> <i class="fas fa-trash-alt"></i></a></td>
     </tr>
   
   `;
+  cartTotalPrice(camera, subtotal)
 
-  cartTotalPrice(camera)
-
-
-  for (let i = 0; i < camera.quantity; i++) {
-    cameraId.push(camera.id);
-  }
+  // for (let i = 0; i < camera.quantity; i++) {
+  //   cameraId.push(camera.id);
+  // }
+ 
 });
+//___________________________________________calcul du prix total du panier___________________________________________
 
+function cartTotalPrice(camera, subtotal){
+  cartPrice += subtotal;// on ajoute le sous total de chacunes des lignes du panier 
+  //affiche le prix total et l'envoi au local Storage
+  document.getElementById('totalPrice').textContent = formatter.format(cartPrice);
+  localStorage.setItem('totalPrice', JSON.stringify(cartPrice));
+};
+//_____________________________________Supprimer le produit selectionné du panier_____________________________________
 
 function deleteCamera(id) {
-    let camera = cartContent[id];
-    if (camera.quantity > 1) {
-      camera.quantity--;
-    } else {
-      cartContent.splice(id, 1);
-    }
-    localStorage.setItem('cart', JSON.stringify(cartContent));
-    window.location.reload();
+  let camera = cartContent[id];
+  if (camera.quantity > 1) {
+    camera.quantity--;
+  } else {
+    cartContent.splice(id, 1);
   }
+  localStorage.setItem('cart', JSON.stringify(cartContent));
+  window.location.reload();
+}
 
-//supprimer le produit du panier
 document.querySelectorAll(".deleteCamera").forEach(deleteButton => {
   deleteButton.addEventListener('click', () => deleteCamera(deleteButton.dataset.id))
 });
+//___________________________________________________Vider le panier___________________________________________________
 
 let clearCart = document.getElementById('clearCart')
-clearCart.addEventListener('click',  deleteCart);
+                        .addEventListener('click', deleteCart);
 
-//fonction vider le panier
 function deleteCart() {
-  if (cartContent == null) {
-  } else {
+  if (cartContent !== null){
     tableContainer.remove();
     localStorage.clear();
     window.location.reload();
   }
 };
-
-////formulaire de contact ////
+//________________________________________________formulaire de contact________________________________________________
 const cartForm =  document.createElement("aside");
                   cartForm.classList.add("cart-form");
 cartContainer.appendChild(cartForm)
@@ -95,7 +89,7 @@ cartContainer.appendChild(cartForm)
                           </div>
                           <div class="col-12">
                             <label for="inputAddress" class="form-label">Adresse</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="12 rue des Lilas" required>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="12 rue des Lilas" pattern="^[-'a-zA-ZÀ-ÖØ-öø-ÿ ]{2,30}$" required>
                           </div>
                           <div class="col-12">
                             <label for="inputAddress2" class="form-label">Complément d'adresse</label>
@@ -138,11 +132,12 @@ cartContainer.appendChild(cartForm)
                           </div>
                           <div class="col-12">
                             
-                            <button type="submit" class="btn btn-primary order-validation">
                             <a  id="sendForm" href ="../orderconfirmation/orderconfirm.html">
+                            <button type="submit" class="btn btn-primary order-validation">
                               Commander
-                            </a>
                             </button>
+                            </a>
+                            
                           </div>
                           
                         </form>`;

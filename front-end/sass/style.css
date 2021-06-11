@@ -1,0 +1,404 @@
+/*general settings*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bolder;
+  color: white;
+}
+
+main, footer, h1 {
+  padding: 1rem;
+}
+
+h1 {
+  font-family: 'Belligerent Madness', sans-serif;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+header img, footer img {
+  border-radius: 10%;
+}
+
+.fas {
+  font-size: 1.2rem;
+}
+
+.error {
+  border-radius: 1.2rem;
+  border: 0.7rem solid #e7890694;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+
+/*general settings*/
+/*buttons*/
+main button {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.719);
+          box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.719);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: .5rem;
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  background: -webkit-gradient(linear, left top, left bottom, from(#8f5bfee5), to(#e78906e8));
+  background: linear-gradient(#8f5bfee5, #e78906e8);
+  color: white;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+}
+
+main button:hover {
+  opacity: 85%;
+  -webkit-box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+          box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+main button:active {
+  opacity: 100%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+/*buttons*/
+/*product cards*/
+.product-cards {
+  margin: 1rem;
+  border-radius: 5%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+}
+
+.product-cards:hover {
+  -webkit-box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+          box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+}
+
+.product-cards__prev {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 60% 40%;
+      grid-template-rows: 60% 40%;
+  border-radius: 1.2rem;
+  height: 340px;
+  position: relative;
+}
+
+.product-cards__prev img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 0.7rem solid #e7890694;
+  border-radius: 5% 5% 0% 0%;
+}
+
+.product-cards__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1rem;
+}
+
+/*product cards*/
+/*animation loader home page*/
+nav {
+  font-family: 'Belligerent Madness', sans-serif;
+}
+
+nav .nav-title {
+  font-size: 200%;
+}
+
+/*Home*/
+#main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+  #main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+    -ms-grid-rows: 33% 33% 33%;
+        grid-template-rows: 33% 33% 33%;
+    gap: 1rem;
+    padding: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% 20% 20% 20% 20%;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    gap: 1rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+/*home*/
+.camera {
+  margin: 1rem;
+  border-radius: 5%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+}
+
+.camera p {
+  margin: 1rem;
+}
+
+.camera:hover {
+  -webkit-box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+          box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+}
+
+.camera figure {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 50% 50%;
+      grid-template-rows: 50% 50%;
+  border-radius: 1.2rem;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .camera figure {
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+    -ms-grid-rows: 100%;
+        grid-template-rows: 100%;
+  }
+}
+
+.camera figure img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 0.7rem solid #e7890694;
+  border-radius: 5% 5% 0 0;
+}
+
+@media (min-width: 1024px) {
+  .camera figure img {
+    border-radius: 5% 0 0 5%;
+  }
+}
+
+.camera figure figcaption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding: 1rem;
+}
+
+.camera figure figcaption h1 {
+  text-align: center;
+}
+
+.camera figure figcaption .description {
+  font-size: x-large;
+  overflow: scroll;
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+
+.camera figure figcaption .price {
+  text-align: right;
+  font-size: large;
+}
+
+.camera figure figcaption button {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#quantity {
+  width: 3rem;
+}
+
+#main-cart {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 5% 30% 65%;
+      grid-template-rows: 5% 30% 65%;
+}
+
+#main-cart h1 {
+  margin: 1rem;
+}
+
+.cart-form {
+  -ms-grid-row: 3;
+  grid-row: 3;
+  margin: 1rem;
+  border-radius: 5%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.cart-form:hover {
+  -webkit-box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+          box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+}
+
+.cart-form .full-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.cart-form .adress input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.emptyCart {
+  border-radius: 1.2rem;
+  border: 0.7rem solid #e7890694;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+}
+
+#cart {
+  -ms-grid-row: 2;
+  grid-row: 2;
+  padding: 1rem;
+}
+
+#cart button {
+  margin: auto;
+  margin-top: 1rem;
+}
+
+table {
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  table {
+    margin: 0;
+  }
+  table .picture {
+    display: none;
+  }
+}
+
+table td, table th {
+  border: 0.2rem solid #e7890694;
+  width: 1rem;
+}
+
+table img {
+  width: 100%;
+  cursor: pointer;
+}
+
+thead, tfoot, .deleteCamera {
+  background-color: #e7890694;
+  font-weight: bold;
+}
+
+.deleteCamera {
+  width: 1%;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

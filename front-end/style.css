@@ -5,14 +5,18 @@ html, body {
   padding: 0;
 }
 
-button a {
+a {
   text-decoration: none;
-  font-weight: bold;
+  font-weight: bolder;
   color: white;
 }
 
 main, footer, h1 {
   padding: 1rem;
+}
+
+h1 {
+  font-family: "Belligerent Madness", sans-serif;
 }
 
 h2 {
@@ -23,7 +27,7 @@ header img, footer img {
   border-radius: 10%;
 }
 
-.fa-cart-arrow-down {
+.fas {
   font-size: 1.2rem;
 }
 
@@ -103,6 +107,13 @@ main button:active {
 
 /*product cards*/
 /*animation loader home page*/
+nav {
+  font-family: "Belligerent Madness", sans-serif;
+}
+nav .nav-title {
+  font-size: 200%;
+}
+
 /*Home*/
 #main {
   display: flex;
@@ -197,21 +208,34 @@ main button:active {
   width: 3rem;
 }
 
-form {
+#main-cart {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 5% 30% 65%;
+}
+#main-cart h1 {
+  margin: 1rem;
+}
+
+.cart-form {
+  grid-row: 3;
   margin: 1rem;
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+  margin: 1rem;
   padding: 1rem;
 }
-form:hover {
+.cart-form:hover {
   box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
 }
-form .full-name {
+.cart-form .full-name {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-form .adress input {
+.cart-form .adress input {
   display: flex;
   flex-direction: column;
 }
@@ -230,13 +254,8 @@ form .adress input {
 }
 
 #cart {
-  margin: 1rem;
-  border-radius: 5%;
-  box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+  grid-row: 2;
   padding: 1rem;
-}
-#cart:hover {
-  box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
 }
 #cart button {
   margin: auto;
@@ -244,8 +263,9 @@ form .adress input {
 }
 
 table {
-  height: 20%;
-  margin: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
 }
 @media (max-width: 600px) {
   table {
@@ -254,20 +274,24 @@ table {
   table .picture {
     display: none;
   }
-  table .deleteCamera {
-    display: none;
-  }
 }
 table td, table th {
   border: 0.2rem solid #e7890694;
+  width: 1rem;
 }
 table img {
   width: 100%;
+  cursor: pointer;
 }
 
 thead, tfoot, .deleteCamera {
   background-color: #e7890694;
   font-weight: bold;
+}
+
+.deleteCamera {
+  width: 1%;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
