@@ -15,7 +15,7 @@ let cameraId = [];
 
 let cartContent = JSON.parse(localStorage.getItem("cart")) || [];
 
-//________________Boucle pour generer l'affichage de chacun des articles stockés dans le local storage________________
+//_________________Boucle pour generer l'affichage de chacun des articles stockés dans le locaStorage_________________
 
 cartContent.forEach((camera, i) => {
   let subtotal = camera.quantity * camera.price/100;
@@ -64,17 +64,13 @@ document.querySelectorAll(".deleteCamera").forEach(deleteButton => {
 });
 //___________________________________________________Vider le panier___________________________________________________
 
-let clearCart = document.getElementById('clearCart')
-                        .addEventListener('click', deleteCart);
+document.getElementById('clearCart')
+        .addEventListener('click', function() {
+          localStorage.clear();
+          window.location.reload();
+        });
+//________________________________________________formulaire de contact_________________________________________________
 
-function deleteCart() {
-  if (cartContent !== null){
-    tableContainer.remove();
-    localStorage.clear();
-    window.location.reload();
-  }
-};
-//________________________________________________formulaire de contact________________________________________________
 const cartForm =  document.createElement("aside");
                   cartForm.classList.add("cart-form");
 cartContainer.appendChild(cartForm)

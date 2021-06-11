@@ -9,37 +9,12 @@
         margin: 1rem;
     }
 }
-.cart-form{
-    grid-row: 3;
-    @include cards;
-    margin: 1rem;
-    padding: 1rem;
-    & .full-name{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-    & .adress input{
-        display: flex;
-        flex-direction: column;        
-    }
+#title{
+    grid-row: 1;
 }
-
-.emptyCart{
-    border-radius: 1.2rem;
-    border: 0.7rem solid #e7890694;
-    display: flex;
-    justify-content: center ;
-    align-content: center;
-    padding: 1rem;
-    text-align: center;
-    overflow: hidden;
-    white-space: wrap;
-    text-overflow: ellipsis;
-}
-
 #cart{
     grid-row: 2;
+    margin-top: 2rem;
     padding: 1rem;
     & button{
         margin: auto;
@@ -49,10 +24,9 @@
 
 table{
     text-align: center;
-    margin-top: 2rem;
     width: 100%;
     @include mobile{
-        margin : 0;
+
         .picture{
             display: none;
         }
@@ -79,6 +53,35 @@ thead, tfoot, .deleteCamera{
 .deleteCamera{
     width: 1%;
     cursor: pointer;
+}
+.cart-form{
+    grid-row: 3;
+    @include cards;
+    margin: 1rem;
+    padding: 1rem;
+    & .full-name{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    & .adress input{
+        display: flex;
+        flex-direction: column;        
+    }
+}
+
+.emptyCart{
+    border-radius: 1.2rem;
+    border: 0.7rem solid #e7890694;
+    display: flex;
+    justify-content: center ;
+    align-content: center;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
 }
 
 

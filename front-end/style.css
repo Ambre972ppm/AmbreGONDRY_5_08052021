@@ -219,6 +219,48 @@ nav .nav-title {
   margin: 1rem;
 }
 
+#title {
+  grid-row: 1;
+}
+
+#cart {
+  grid-row: 2;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+#cart button {
+  margin: auto;
+  margin-top: 1rem;
+}
+
+table {
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  table .picture {
+    display: none;
+  }
+}
+table td, table th {
+  border: 0.2rem solid #e7890694;
+  width: 1rem;
+}
+table img {
+  width: 100%;
+  cursor: pointer;
+}
+
+thead, tfoot, .deleteCamera {
+  background-color: #e7890694;
+  font-weight: bold;
+}
+
+.deleteCamera {
+  width: 1%;
+  cursor: pointer;
+}
+
 .cart-form {
   grid-row: 3;
   margin: 1rem;
@@ -247,51 +289,11 @@ nav .nav-title {
   justify-content: center;
   align-content: center;
   padding: 1rem;
+  margin: 1rem;
   text-align: center;
   overflow: hidden;
   white-space: wrap;
   text-overflow: ellipsis;
-}
-
-#cart {
-  grid-row: 2;
-  padding: 1rem;
-}
-#cart button {
-  margin: auto;
-  margin-top: 1rem;
-}
-
-table {
-  text-align: center;
-  margin-top: 2rem;
-  width: 100%;
-}
-@media (max-width: 600px) {
-  table {
-    margin: 0;
-  }
-  table .picture {
-    display: none;
-  }
-}
-table td, table th {
-  border: 0.2rem solid #e7890694;
-  width: 1rem;
-}
-table img {
-  width: 100%;
-  cursor: pointer;
-}
-
-thead, tfoot, .deleteCamera {
-  background-color: #e7890694;
-  font-weight: bold;
-}
-
-.deleteCamera {
-  width: 1%;
-  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
