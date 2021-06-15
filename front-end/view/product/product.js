@@ -1,5 +1,8 @@
+//_______________________________________________On nomme la page produit_______________________________________________
+function pageName(value){
+    document.title = ` Appareil ${value.name}`;
+}
 //______________________________On génère notre code HTML contenant l'appareil selectionné______________________________
-
 function printProductContainer(value, formatter){
     document
             .getElementById('product')
@@ -33,7 +36,6 @@ function printProductContainer(value, formatter){
              </aside>`;
 }
 //____________________________________création de la boucle des options de lentilles____________________________________
-
 function createLenseOption(value){
     let selectALense = [];
     const lensesSelect = document.getElementById("lensesSelect");
@@ -45,7 +47,6 @@ function createLenseOption(value){
     lensesSelect.innerHTML = selectALense;
 }
 //_________________________________________________choix de la quantité_________________________________________________
-
 function chooseProductQuantity(){
     let cameraQuantity = document.getElementById("quantity")
              .addEventListener("change", function(e){
@@ -54,7 +55,6 @@ function chooseProductQuantity(){
              })
 }
 //____________________________________________________Ajout au panier____________________________________________________
-
 function sendToCart(value){
     document.getElementById("addCart")//on recupère le bouton ajouter au panier 
             .addEventListener("click", function(e){
@@ -74,7 +74,6 @@ function sendToCart(value){
 })
 }
 //___________________________________________On affiche l'appareil selectionné___________________________________________
-
 function displayOneCamera(){
 //------récuperation de l'id du produit sélectionné dans l'URL----------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
@@ -91,10 +90,11 @@ function displayOneCamera(){
 //------nous recupérons la valeur de la requête précedente et l'affichons dans le container "product"-
         .then(function(value) {
             const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-             printProductContainer(value, formatter);//1 - on affiche notre carte dans notre page
-             createLenseOption(value);               //2 - on crée la boucle pour permettre le choix de l'objectif
-             chooseProductQuantity(value);           //3 - on permet le choix de la quantité
-             sendToCart(value);                      //4 - on envoi le produit dans le localStorage pour le récuperer dans le panier
+             pageName(value);                        //1 - on nomme la page produit
+             printProductContainer(value, formatter);//2 - on affiche notre carte dans notre page
+             createLenseOption(value);               //3 - on crée la boucle pour permettre le choix de l'objectif
+             chooseProductQuantity(value);           //4 - on permet le choix de la quantité
+             sendToCart(value);                      //5 - on envoi le produit dans le localStorage pour le récuperer dans le panier
              console.log(value);
     })
 //------En cas d'erreur -------------------------------------------------------------------------------
