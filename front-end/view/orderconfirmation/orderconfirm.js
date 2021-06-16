@@ -4,7 +4,7 @@ const orderId = urlParams.get('orderId');
 console.log(orderId);  
 
 //________________________________________récupération des données contact________________________________________
-let contact = JSON.parse(localStorage.getItem("contact"))  || [];
+let contact = JSON.parse(localStorage.getItem("contact"));
 
 //_______________________________________récupération du prix de la commande_______________________________________
 let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
@@ -13,7 +13,7 @@ console.log(totalPrice)
 //_____________________________________affichage de la confirmation de commande_____________________________________
 function displayOrderConfirmation (){
     confirmation.innerHTML += `
-        <h2>Bonjour <b>${contact.firstName } ${contact.lastName}</b>
+        <h2>Bonjour <b>${contact.firstName} ${contact.lastName}</b>
         </h2>
         <p>
         Nous vous remercions pour votre confiance
