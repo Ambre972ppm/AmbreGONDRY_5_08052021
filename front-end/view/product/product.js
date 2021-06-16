@@ -23,7 +23,6 @@ function printProductContainer(value, formatter){
                             <option value="5">5</option>
                         </select>
                         <p class="price">Prix unitaire :<b> ${formatter.format(value.price/100)}</b></p>
-
                         
                             <a id="addCart" href ="../cart/cart.html">
                             <button>
