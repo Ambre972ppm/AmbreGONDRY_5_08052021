@@ -291,4 +291,18 @@ thead, tfoot {
   text-overflow: ellipsis;
 }
 
+#confirmation {
+  margin: 1rem;
+  border-radius: 5%;
+  box-shadow: 0 4px 8px 0 rgba(39, 39, 39, 0.2);
+}
+#confirmation:hover {
+  box-shadow: 0 4px 10px 0 rgba(17, 17, 17, 0.507);
+}
+#confirmation h1 {
+  text-align: center;
+  border: 0.7rem solid #e7890694;
+  border-radius: 10rem;
+}
+
 /*# sourceMappingURL=style.css.map */

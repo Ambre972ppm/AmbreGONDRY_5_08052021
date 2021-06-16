@@ -1,2 +1,10 @@
 //order confirmation page
+#confirmation{
+    @include cards;
+    h1{
+        text-align: center;
+        border: 0.7rem solid #e7890694;
+        border-radius: 10rem;
+    }
+}
 //order confirmation page

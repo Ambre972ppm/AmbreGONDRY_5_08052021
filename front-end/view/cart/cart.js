@@ -1,7 +1,3 @@
-//emplacement du contenu de la page
-const cartContainer = document.getElementById("cart");//on defini le conteneur
-//emplacement ou intégrer le contenu du panier
-let tableContainer = document.getElementById("tableContainer");
 //formateur du prix pour passer le nombre concernant le prix en devise
 const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 // initialise le prix du panier
@@ -71,7 +67,7 @@ document.getElementById('clearCart')
 
 const cartForm =  document.createElement("aside");
                   cartForm.classList.add("cart-form");
-cartContainer.appendChild(cartForm)
+cart.appendChild(cartForm)
              .innerHTML += `<form id="form"  class="row g-3">
                             <div class="row g-3">
                               <div class="col">
