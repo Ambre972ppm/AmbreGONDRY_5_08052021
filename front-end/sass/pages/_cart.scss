@@ -21,7 +21,6 @@
         margin-top: 1rem;
      }
 }
-
 table{
     text-align: center;
     width: 100%;
@@ -35,11 +34,9 @@ table{
         cursor: pointer;
     } 
 }
-
 thead, tfoot {
     font-weight: bold;
 }
-
 .deleteCamera{
     width: 1%;
     cursor: pointer;
@@ -59,7 +56,6 @@ thead, tfoot {
         flex-direction: column;        
     }
 }
-
 .emptyCart{
     border-radius: 1.2rem;
     border: 0.7rem solid #e7890694;
@@ -73,6 +69,4 @@ thead, tfoot {
     white-space: wrap;
     text-overflow: ellipsis;
 }
-
-
 //cart page
