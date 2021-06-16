@@ -228,7 +228,7 @@ nav .nav-title {
   margin-top: 2rem;
   padding: 1rem;
 }
-#cart button {
+#cart #clearCart {
   margin: auto;
   margin-top: 1rem;
 }
@@ -242,17 +242,12 @@ table {
     display: none;
   }
 }
-table td, table th {
-  border: 0.2rem solid #e7890694;
-  width: 1rem;
-}
-table img {
-  width: 100%;
+table .photo {
+  width: 100px;
   cursor: pointer;
 }
 
-thead, tfoot, .deleteCamera {
-  background-color: #e7890694;
+thead, tfoot {
   font-weight: bold;
 }
 

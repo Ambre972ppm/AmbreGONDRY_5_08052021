@@ -16,7 +16,7 @@
     grid-row: 2;
     margin-top: 2rem;
     padding: 1rem;
-    & button{
+    & #clearCart{
         margin: auto;
         margin-top: 1rem;
      }
@@ -26,27 +26,17 @@ table{
     text-align: center;
     width: 100%;
     @include mobile{
-
         .picture{
             display: none;
         }
-        // .deleteCamera{
-        //     display: none;
-        // }
     }
-    
-    & td, th{
-        border: 0.2rem solid #e7890694;
-        width: 1rem;
-    }
-    & img{
-        width: 100%;
+    .photo{
+        width: 100px;
         cursor: pointer;
     } 
 }
 
-thead, tfoot, .deleteCamera{
-    background-color: #e7890694;
+thead, tfoot {
     font-weight: bold;
 }
 

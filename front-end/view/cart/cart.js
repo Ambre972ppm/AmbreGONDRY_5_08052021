@@ -18,8 +18,8 @@ let cartContent = JSON.parse(localStorage.getItem("cart")) || [];
 cartContent.forEach((camera, i) => {
   let subtotal = camera.quantity * camera.price/100;
   tableContainer.innerHTML += `
-    <tr>
-        <td class="picture"><a href="../product/product.html?id=${camera._id}"><img src=${camera.imageUrl} alt="appareil photo" /></a></td>
+    <tr scope="row">
+        <td class="picture"><a href="../product/product.html?id=${camera._id}"><img src=${camera.imageUrl} class = "photo" alt="appareil photo" /></a></td>
         <td>${camera.name}</td>
         <td>${camera.lense}</td>
         <td>${formatter.format(camera.price/100)}</td>
@@ -72,7 +72,7 @@ document.getElementById('clearCart')
 const cartForm =  document.createElement("aside");
                   cartForm.classList.add("cart-form");
 cartContainer.appendChild(cartForm)
-             .innerHTML += `<form id="form" action="../orderconfirmation/orderconfirm.html/" method="POST" class="row g-3">
+             .innerHTML += `<form id="form"  class="row g-3">
                             <div class="row g-3">
                               <div class="col">
                                   <input type="text" class="form-control" id="firstName" placeholder="Prénom" aria-label="First name" pattern="[-'a-zA-ZÀ-ÖØ-öø-ÿ ]{2,20}$" required>
@@ -125,18 +125,16 @@ cartContainer.appendChild(cartForm)
                                 <input type="tel" class="form-control" id="inputTel4" placeholder="0790123456" pattern="[0-9]{10}">
                               </div>
                               <div class="col-12">
-                                
                                 <button type="submit" value="order" id="sendForm" class="btn btn-primary order-validation">
                                   Commander
                                 </button>
-                        
                               </div>
                             </form>`;
 
 //________________________________________Récupération des données du formulaire_________________________________________
 
 function sendOrder() {
-  let form = document.getElementById("form");
+    const form = document.getElementById('form');
   if (form.reportValidity() == true && camerasOnCart.length > 0) {
     let contact = {
       'firstName' : document.getElementById("firstName").value,
@@ -145,45 +143,43 @@ function sendOrder() {
       'city'      : document.getElementById("city").value,
       'email'     : document.getElementById("email").value
     };
- 
-    let products = camerasOnCart; 
 
+    let products = camerasOnCart;
+
+    let orderData = JSON.stringify ({
+      contact,
+      products
+    })
+ 
 //_______________________________________envoi des données avec la methode Post_______________________________________
 
-const urlPost = "http://localhost:3000/api/cameras/order";
-
-let orderData = JSON.stringify({
-  contact,
-  products,
-});
-
-let fetchOrderData = {
-  method : 'POST',
-  headers :{
-    'accept' : 'application/json',
-    'Content-Type': 'application/json',
-},
-  body : orderData,
-}
-
-fetch(urlPost, fetchOrderData)
-  .then(function (res) {
-        return res.json()
-      })
-      .then(function(r) {
-        localStorage.setItem("contact", JSON.stringify(r.contact));
-        window.location.href = `../orderconfirmation/orderconfirm.html/${r.orderId}`;
-      })
-      .catch(function (err) {
-        alert(" Une erreur s'est produite veuillez verifier que tout les champs sont correctement renseignés ")
-        console.log("fetch Error");
-      });
+fetch(`http://localhost:3000/api/cameras/order`, {
+  method: 'POST',
+  headers: {
+    'accept': "application/json",
+    'content-type': "application/json"
+  },
+  mode: "cors",
+  body: orderData
+})
+    .then(function (res) {
+      return res.json()
+    })
+    .then(function(r) {
+      localStorage.setItem("contact", JSON.stringify(r.contact));
+      window.location.assign("../orderconfirmation/orderconfirm.html?orderId=" + r.orderId);
+    })
+    .catch(function (err) {
+      alert(" Une erreur s'est produite veuillez verifier que tout les champs sont correctement renseignés ")
+      console.log(err);
+    });
+  
   }
 }
 
 let sendForm = document.getElementById("sendForm");
 
-sendForm.addEventListener('click', function (e) {
+sendForm.addEventListener('click', function(e) {
 e.preventDefault();
 sendOrder();
 });
