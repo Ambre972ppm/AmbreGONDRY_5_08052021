@@ -4,7 +4,7 @@ const orderId = urlParams.get('orderId');
 console.log(orderId);  
 
 //________________________________________récupération des données contact________________________________________
-let contact = JSON.parse(localStorage.getItem("contact"))  || [];
+let contact = JSON.parse(localStorage.getItem("contact")).map;
 
 //_______________________________________récupération du prix de la commande_______________________________________
 let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));

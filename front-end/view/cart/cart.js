@@ -82,8 +82,8 @@ cartContainer.appendChild(cartForm)
                               </div>
                               </div>
                               <div class="col-12">
-                                <label for="inputAddress" class="form-label" id="address">Adresse</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="12 rue des Lilas" pattern="[-'0-9a-zA-ZÀ-ÖØ-öø-ÿ ]{2,30}$" required>
+                                <label for="inputAddress" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" id="address" placeholder="12 rue des Lilas" pattern="[-'0-9a-zA-ZÀ-ÖØ-öø-ÿ ]{2,30}$" required>
                               </div>
                               <div class="col-12">
                                 <label for="inputAddress2" class="form-label">Complément d'adresse</label>
@@ -113,12 +113,12 @@ cartContainer.appendChild(cartForm)
                                 <input type="text" class="form-control" id="inputZip" placeholder="69000" pattern="[0-9]{5}" required>
                               </div>
                               <div class="col-md-6">
-                                <label for="inputCity" class="form-label" id="city">Ville</label>
-                                <input type="text" class="form-control" id="inputCity" placeholder="Lyon" pattern="[-'a-zA-ZÀ-ÖØ-öø-ÿ ]{2,30}$" required>
+                                <label for="inputCity" class="form-label" >Ville</label>
+                                <input type="text" class="form-control" id="city" placeholder="Lyon" pattern="[-'a-zA-ZÀ-ÖØ-öø-ÿ ]{2,30}$" required>
                               </div>
                               <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label" id="email">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="jeanpaul.berthod@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="jeanpaul.berthod@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                               </div>
                               <div class="col-md-6">
                                 <label for="inputTel4" class="form-label">Téléphone</label>
