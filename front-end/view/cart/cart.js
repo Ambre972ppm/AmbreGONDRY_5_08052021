@@ -2,7 +2,7 @@
 const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 // initialise le prix du panier
 let cartPrice = 0;
-//récupération ID
+//tableau pour récuperer les id des produits selectionnés
 let camerasOnCart = [];
 
 //_________________________________on retrouve et récupère le contenu du localStorage_________________________________
@@ -12,7 +12,7 @@ let cartContent = JSON.parse(localStorage.getItem("cart")) || [];
 //_________________Boucle pour generer l'affichage de chacun des articles stockés dans le locaStorage_________________
 
 cartContent.forEach((camera, i) => {
-  let subtotal = camera.quantity * camera.price/100;
+  let subtotal = camera.quantity * camera.price/100;//calcul du sous total par ligne
   tableContainer.innerHTML += `
     <tr scope="row">
         <td class="picture"><a href="../product/product.html?id=${camera._id}"><img src=${camera.imageUrl} class = "photo" alt="appareil photo" /></a></td>
