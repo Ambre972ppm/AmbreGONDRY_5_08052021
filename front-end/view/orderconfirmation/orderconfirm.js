@@ -14,6 +14,7 @@ console.log(totalPrice)
 function displayOrderConfirmation (){
     const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
     confirmation.innerHTML += `
+        <h1>Votre commande est confirmée</h1>
         <h2>Bonjour <b>${contact.firstName} ${contact.lastName}</b>
         </h2>
         <p>
@@ -35,5 +36,5 @@ function displayOrderConfirmation (){
     `
 };
 
-displayOrderConfirmation();
-localStorage.clear()
+displayOrderConfirmation()//appel de la fonction pour afficher la confirmation de commande
+localStorage.clear()//suppression du contenu du localStorage une fois la commande validée
