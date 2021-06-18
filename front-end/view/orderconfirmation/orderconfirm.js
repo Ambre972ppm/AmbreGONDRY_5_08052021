@@ -13,7 +13,8 @@ console.log(totalPrice)
 //_____________________________________affichage de la confirmation de commande_____________________________________
 function displayOrderConfirmation (){
     const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-    confirmation.innerHTML += `
+    document.getElementById("confirmation")
+            .innerHTML += `
         <h1>Votre commande est confirmée</h1>
         <h2>Bonjour <b>${contact.firstName} ${contact.lastName}</b>
         </h2>
