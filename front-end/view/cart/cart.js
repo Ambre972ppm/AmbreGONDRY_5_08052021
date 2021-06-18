@@ -1,9 +1,14 @@
 //formateur du prix pour passer le nombre concernant le prix en devise
 const formatter = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-// initialise le prix du panier
+//on defini le conteneur
+const cartContainer = document.getElementById("cart");
+//emplacement du tableau du panier
+let tableContainer = document.getElementById("tableContainer");
+// initialisation du prix du panier
 let cartPrice = 0;
-//tableau pour récuperer les id des produits selectionnés
+//tableau pour récuperer les ids des produits selectionnés
 let camerasOnCart = [];
+
 
 //_________________________________on retrouve et récupère le contenu du localStorage_________________________________
 
@@ -26,11 +31,11 @@ cartContent.forEach((camera, i) => {
   
   `;
   cartTotalPrice(camera, subtotal)
-
+//pour chaque article présent au panier on envoi l'id dans le tableau camerasOnCart
   for (let i = 0; i < camera.quantity; i++) {
     camerasOnCart.push(camera._id);
   }
- 
+
 });
 //___________________________________________calcul du prix total du panier___________________________________________
 
@@ -44,31 +49,31 @@ function cartTotalPrice(camera, subtotal){
 
 function deleteCamera(id) {
   let camera = cartContent[id];
-  if (camera.quantity > 1) {
+  if (camera.quantity > 1) {//si la quantité de produit est superieur à 1 la quantité diminue de 1
     camera.quantity--;
   } else {
-    cartContent.splice(id, 1);
+    cartContent.splice(id, 1);//s'il ne reste qu'un produit il est vidé
   }
-  localStorage.setItem('cart', JSON.stringify(cartContent));
-  window.location.reload();
+  localStorage.setItem('cart', JSON.stringify(cartContent));//on met en fonction à jour le contenu du LocalStorage
+  window.location.reload();//on recharge la page
 }
 
-document.querySelectorAll(".deleteCamera").forEach(deleteButton => {
+document.querySelectorAll(".deleteCamera").forEach(deleteButton => {// appel de la fonction au clic
   deleteButton.addEventListener('click', () => deleteCamera(deleteButton.dataset.id))
 });
 //___________________________________________________Vider le panier___________________________________________________
 
 document.getElementById('clearCart')
-        .addEventListener('click', function() {
-          localStorage.clear();
-          window.location.reload();
+        .addEventListener('click', function() {// au clic sur le bouton vider le panier
+          localStorage.clear();//on vide le localStorage
+          window.location.reload();//on recharge la page
         });
-//________________________________________________formulaire de contact_________________________________________________
+//__________________________________________Création du formulaire de contact___________________________________________
 
 const cartForm =  document.createElement("aside");
                   cartForm.classList.add("cart-form");
-cart.appendChild(cartForm)
-             .innerHTML += `<form id="form"  class="row g-3">
+cartContainer.appendChild(cartForm)
+             .innerHTML += `<form id="form" class="row g-3">
                             <div class="row g-3">
                               <div class="col">
                                   <input type="text" class="form-control" id="firstName" placeholder="Prénom" aria-label="First name" pattern="[-'a-zA-ZÀ-ÖØ-öø-ÿ ]{2,20}$" required>
@@ -126,56 +131,42 @@ cart.appendChild(cartForm)
                                 </button>
                               </div>
                             </form>`;
-
-//________________________________________Récupération des données du formulaire_________________________________________
-
-function sendOrder() {
-    const form = document.getElementById('form');
-  if (form.reportValidity() == true && camerasOnCart.length > 0) {
-    let contact = {
-      'firstName' : document.getElementById("firstName").value,
-      'lastName'  : document.getElementById("lastName").value,
-      'address'   : document.getElementById("address").value,
-      'city'      : document.getElementById("city").value,
-      'email'     : document.getElementById("email").value
-    };
-
-    let products = camerasOnCart;
-
-    let orderData = JSON.stringify ({
-      contact,
-      products
-    })
- 
 //_______________________________________envoi des données avec la methode Post_______________________________________
 
-fetch(`http://localhost:3000/api/cameras/order`, {
+let form = document.querySelector("form");//on récupère notre formulaire
+
+form.addEventListener('submit', function(e) {//lorsqu'on soumet notre formulaire
+  e.preventDefault();
+//on envoi les données au serveur avec la requête post
+  fetch(`http://localhost:3000/api/cameras/order`, {
   method: 'POST',
   headers: {
     'accept': "application/json",
     'content-type': "application/json"
   },
   mode: "cors",
-  body: orderData
+  body: JSON.stringify({//on assigne à la requête les données attendues par le serveur
+    contact : {
+                'firstName' : document.getElementById("firstName").value,
+                'lastName'  : document.getElementById("lastName").value,
+                'address'   : document.getElementById("address").value,
+                'city'      : document.getElementById("city").value,
+                'email'     : document.getElementById("email").value
+          },
+    products : camerasOnCart
+    })
 })
-    .then(function (res) {
-      return res.json()
-    })
-    .then(function(r) {
-      localStorage.setItem("contact", JSON.stringify(r.contact));
-      window.location.assign("../orderconfirmation/orderconfirm.html?orderId=" + r.orderId);
-    })
-    .catch(function (err) {
-      alert(" Une erreur s'est produite veuillez verifier que tout les champs sont correctement renseignés ")
-      console.log(err);
-    });
-  
-  }
-}
+  .then(function (res) {
+    return res.json()
+  })
+  .then(function(r) {//on envoi l'OrderId renvoyé par le serveur dans l'url de notre page de confirmation
+    window.location.assign("../orderconfirmation/orderconfirm.html?orderId=" + r.orderId);
+    localStorage.setItem("contact", JSON.stringify(r.contact));//on envoi le contact au localStorage
 
-let sendForm = document.getElementById("sendForm");
+  })
+  .catch(function (err) {
+    alert ("Une erreur s'est produite, vous n'avez pas correctement renseigné les champs ou votre panier est peut être vide, veuillez rééssayer merci")
+    console.log(err);
+  });
 
-sendForm.addEventListener('click', function(e) {
-e.preventDefault();
-sendOrder();
-});
+})
