@@ -161,11 +161,9 @@ form.addEventListener('submit', function(e) {//lorsqu'on soumet notre formulaire
   .then(function(r) {//on envoi l'OrderId renvoyé par le serveur dans l'url de notre page de confirmation
     window.location.assign("../orderconfirmation/orderconfirm.html?orderId=" + r.orderId);
     localStorage.setItem("contact", JSON.stringify(r.contact));//on envoi le contact au localStorage
-
   })
   .catch(function (err) {
     alert ("Une erreur s'est produite, vous n'avez pas correctement renseigné les champs ou votre panier est peut être vide, veuillez rééssayer merci")
     console.log(err);
   });
-
 })
