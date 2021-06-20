@@ -24,6 +24,10 @@ function displayOrderConfirmation (){
         Votre commande <b>${orderId}</b> d'un montant de <b>${formatter.format(totalPrice)}</b>
         est confirmée nous la préparons avec beaucoup d’attention.
         </p>
+        <p>Celle ci vous sera expédiée à l'adresse suivante<br/>
+        <b>${contact.firstName} ${contact.lastName}<br/>
+        ${contact.address}
+        à ${contact.city}</b></p>
         <p>
         Lors de son expédition, vous recevrez un mail de confirmation de prise en charge par le transporteur
         à l'adresse suivante <b>${contact.email}</b>.

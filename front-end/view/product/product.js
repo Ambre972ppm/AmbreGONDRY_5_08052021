@@ -1,4 +1,5 @@
 //_______________________________________________On nomme la page produit_______________________________________________
+
 function pageName(value){
     document.title = ` Appareil ${value.name}`;
 }
@@ -98,6 +99,7 @@ function displayOneCamera(){
     })
 //------En cas d'erreur -------------------------------------------------------------------------------
         .catch(function(err){
+            document.querySelector('.camera').remove()//on supprime la carte camera pour afficher le message d'erreur
             document
                 .getElementById('product')
                 .innerHTML += `<aside class="error">
