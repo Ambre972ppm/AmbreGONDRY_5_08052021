@@ -26,7 +26,7 @@ cartContent.forEach((camera, i) => {
         <td>${formatter.format(camera.price/100)}</td>
         <td>${camera.quantity}</td>
         <td>${formatter.format(subtotal)}</td>
-        <td class="deleteCamera"><a class="deleteCamera" data-id="${i}"> <i class="fas fa-trash-alt"></i></a></td>
+        <td class="deleteCamera"><a class="deleteCamera" data-id="${i}"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
   
   `;
@@ -35,7 +35,6 @@ cartContent.forEach((camera, i) => {
   for (let i = 0; i < camera.quantity; i++) {
     camerasOnCart.push(camera._id);
   }
-
 });
 //___________________________________________calcul du prix total du panier___________________________________________
 
@@ -54,7 +53,7 @@ function deleteCamera(id) {
   } else {
     cartContent.splice(id, 1);//s'il ne reste qu'un produit il est vidé
   }
-  localStorage.setItem('cart', JSON.stringify(cartContent));//on met en fonction à jour le contenu du LocalStorage
+  localStorage.setItem('cart', JSON.stringify(cartContent));//on met à jour le contenu du LocalStorage
   window.location.reload();//on recharge la page
 }
 
