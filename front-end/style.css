@@ -40,7 +40,6 @@ header img, footer img {
   padding: 1rem;
   text-align: center;
   overflow: hidden;
-  white-space: wrap;
   text-overflow: ellipsis;
 }
 
@@ -192,7 +191,6 @@ nav .nav-title {
 .camera figure figcaption .description {
   font-size: x-large;
   overflow: scroll;
-  white-space: wrap;
   text-overflow: ellipsis;
 }
 .camera figure figcaption .price {
@@ -287,8 +285,11 @@ thead, tfoot {
   margin: 1rem;
   text-align: center;
   overflow: hidden;
-  white-space: wrap;
   text-overflow: ellipsis;
+}
+
+#totalPriceTitle {
+  text-align: end;
 }
 
 #confirmation {
