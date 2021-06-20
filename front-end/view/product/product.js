@@ -8,32 +8,30 @@ function printProductContainer(value, formatter){
     document
             .getElementById('product')
             .innerHTML +=`<aside id=${value._id} class="camera">
-                    <figure>
-                        <img src="${value.imageUrl}" alt="${value.name}">
-                    <figcaption>
-                        <h1>  ${value.name} </h1>
-                        <p class="description"> ${value.description} </p>
-                        <p><b> Choisissez votre objectif : </b></p>
-                        <select id="lensesSelect" required></select>
-                        <p><b>Selectionnez la quantité : </b></p>
-                        <select id="quantity" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <p class="price">Prix unitaire :<b> ${formatter.format(value.price/100)}</b></p>
-                        
-                            <a id="addCart" href ="../cart/cart.html">
-                            <button>
-                                Ajouter au Panier
-                            </button>
-                            </a>
-                        
-                    </figcaption>
-                </figure>
-             </aside>`;
+            <figure>
+               <img src="${value.imageUrl}" alt="${value.name}">
+               <figcaption>
+                  <h1>  ${value.name} </h1>
+                  <p class="description"> ${value.description} </p>
+                  <p><b> Choisissez votre objectif : </b></p>
+                  <select id="lensesSelect" required></select>
+                  <p><b>Selectionnez la quantité : </b></p>
+                  <select id="quantity" required>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                  </select>
+                  <p class="price">Prix unitaire :<b> ${formatter.format(value.price/100)}</b></p>
+                  <a id="addCart" href ="../cart/cart.html">
+                  <button>
+                  Ajouter au Panier
+                  </button>
+                  </a>
+               </figcaption>
+            </figure>
+         </aside>`;
 }
 //____________________________________création de la boucle des options de lentilles____________________________________
 function createLenseOption(value){
