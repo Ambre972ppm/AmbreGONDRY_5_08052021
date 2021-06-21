@@ -170,7 +170,7 @@ form.addEventListener("submit", function (e) {
     })
     .then(function (r) {
       //on envoi l'OrderId renvoyé par le serveur dans l'url de notre page de confirmation
-      window.location.assign("../orderconfirmation/orderconfirm.html?orderId=" + r.orderId);
+      window.location.assign(`../orderconfirmation/orderconfirm.html?${r.orderId}`);
       localStorage.setItem("contact", JSON.stringify(r.contact)); //on envoi le contact au localStorage
     })
     .catch(function (err) {
