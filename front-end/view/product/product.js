@@ -89,11 +89,11 @@ function displayOneCamera() {
         style: "currency",
         currency: "EUR",
       });
-      pageName(value); //1 - on nomme la page produit
-      printProductContainer(value, formatter); //2 - on affiche notre carte dans notre page
-      createLenseOption(value); //3 - on crée la boucle pour permettre le choix de l'objectif
-      chooseProductQuantity(value); //4 - on permet le choix de la quantité
-      sendToCart(value); //5 - on envoi le produit dans le localStorage pour le récuperer dans le panier
+      pageName(value);                          //1 - on nomme la page produit
+      printProductContainer(value, formatter);  //2 - on affiche notre carte dans notre page
+      createLenseOption(value);                 //3 - on crée la boucle pour permettre le choix de l'objectif
+      chooseProductQuantity(value);             //4 - on permet le choix de la quantité
+      sendToCart(value);                        //5 - on envoi le produit dans le localStorage pour le récuperer dans le panier
       console.log(value);
     })
     //------En cas d'erreur -------------------------------------------------------------------------------
