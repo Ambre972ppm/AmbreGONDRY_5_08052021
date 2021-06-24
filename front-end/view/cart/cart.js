@@ -179,6 +179,6 @@ form.addEventListener("submit", function (e) {
       console.log(err);
     });
   }else{
-    alert("Une erreur s'est produite, vous n'avez pas correctement renseigné les champs ou votre panier est peut être vide, veuillez rééssayer merci");
+    alert("Oops vous oubliez quelque chose, votre panier est vide, veuillez rééssayer merci");
   }
 });
