@@ -76,7 +76,6 @@ function displayOneCamera() {
   const cameraId = urlParams.get("id");
   console.log(cameraId);
   //------on appelle les données correspondant à l'appareil selectionné---------------------------------
-  if(cameraId == true){
   fetch(`http://localhost:3000/api/cameras/${cameraId}`)
     //------Une fois la reponse du fetch reçue on la retourne au format json------------------------------
     .then(function (res) {
@@ -99,19 +98,17 @@ function displayOneCamera() {
     })
     //------En cas d'erreur -------------------------------------------------------------------------------
     .catch(function (err) {
-      document.querySelector(".camera").remove(); //on supprime la carte camera pour afficher le message d'erreur
       document.getElementById("product")
               .innerHTML += `<aside class="error">
                                     <h2>
                                         Une erreur s'est produite, Veuillez nous en excuser et réiterer votre demande ulterieurement
                                     </h2>
                                 </aside>`;
+              if ( confirm( "Oops la page demandée n'existe pas, voulez vous retourner sur la page d'accueil?" ) ) {
+                  document.location.href="../home/index.html"
+              }
       return console.log(err);
     });
-}else{
-  alert("l'Url renseignée est inconnu, merci de corriger ou de retourner sur la page d'accueil");
-  document.location.href="../home/index.html";
-}
 }
 //_________________________Appel de la fonction pour afficher la carte de l'appareil selectionné_________________________
 
