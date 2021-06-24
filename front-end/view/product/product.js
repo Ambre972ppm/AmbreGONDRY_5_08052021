@@ -76,6 +76,7 @@ function displayOneCamera() {
   const cameraId = urlParams.get("id");
   console.log(cameraId);
   //------on appelle les données correspondant à l'appareil selectionné---------------------------------
+  if(cameraId == true){
   fetch(`http://localhost:3000/api/cameras/${cameraId}`)
     //------Une fois la reponse du fetch reçue on la retourne au format json------------------------------
     .then(function (res) {
@@ -107,6 +108,10 @@ function displayOneCamera() {
                                 </aside>`;
       return console.log(err);
     });
+}else{
+  alert("l'Url renseignée est inconnu, merci de corriger ou de retourner sur la page d'accueil");
+  document.location.href="../home/index.html";
+}
 }
 //_________________________Appel de la fonction pour afficher la carte de l'appareil selectionné_________________________
 
