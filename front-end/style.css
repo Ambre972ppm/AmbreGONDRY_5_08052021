@@ -55,6 +55,7 @@ main button {
   outline: none;
   background: linear-gradient(#8f5bfee5, #e78906e8);
   color: white;
+  margin: auto;
   align-items: center;
   align-content: center;
   text-align: center;
@@ -105,7 +106,6 @@ main button:active {
 }
 
 /*product cards*/
-/*animation loader home page*/
 nav {
   font-family: "Belligerent Madness", sans-serif;
 }
